@@ -1,9 +1,33 @@
-#! /bin/bash
+#!/bin/bash
+#SBATCH --account=epi
+#SBATCH --qos=epi
+#SBATCH --job-name=host_rm  #Job name
+#SBATCH --mail-type=ALL   # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=ralcala@ufl.edu  # Where to send mail
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=16gb   # Per processor memory
+#SBATCH --time=60:00:00   # Walltime
+#SBATCH --output=host_rm_%j.out   # Name output file
+date; hostname; pwd
+
 #Remove host working
 #Tutorial http://www.metagenomics.wiki/tools/samtools/remove-host-sequences
-#bowtie2-build ABIM01.1.nt.fsa Cpapaya
-bowtie2 -x /home/ricardoi/Data/MetagenomicaVirusPapaya/Papayomics_NGS/Maize_genoma/Zmaize_b73 -1 S24_R1.fastq.gz -2 S24_R2.fastq.gz -S SAMPLE_mapped_and_unmapped.sam
-samtools view -bS SAMPLE_mapped_and_unmapped.sam > SAMPLE_mapped_and_unmapped.bam
-samtools view -b -f 12 -F 256 SAMPLE_mapped_and_unmapped.bam > SAMPLE_bothEndsUnmapped.bam
-samtools sort -n SAMPLE_bothEndsUnmapped.bam SAMPLE_bothEndsUnmapped_sorted 
-bedtools bamtofastq -i SAMPLE_bothEndsUnmapped_sorted.bam -fq S24_r1_nh.fastq -fq2 S24_r2_nh.fastq
+
+module load bowtie2 samtools bedtools
+
+# Assigning variables 
+HOST=$1 # Add the PATH to the genome sample
+R1=$2 # Add reads 1 in fastq.gz
+R2=$3 # Add reads 2 in fastq.gz
+OUTNAME=$4 # Add the name identifier, p.ex. Papaya
+
+# Commands
+bowtie2-build ${HOST} ${OUTNAME}_${HOST} 
+bowtie2 -x ${OUTNAME}_${HOST} -1 ${R1} -2 ${R2} -S ${OUTNAME}_mapped_and_unmapped.sam
+samtools view -bS ${OUTNAME}_mapped_and_unmapped.sam > ${OUTNAME}_mapped_and_unmapped.bam
+samtools view -b -f 12 -F 256 ${OUTNAME}_mapped_and_unmapped.bam > ${OUTNAME}_bothEndsUnmapped.bam
+samtools sort -n ${OUTNAME}_bothEndsUnmapped.bam ${OUTNAME}_bothEndsUnmapped_sorted 
+bedtools bamtofastq -i ${OUTNAME}_bothEndsUnmapped_sorted.bam -fq ${R1} -fq2 ${R2}
+
+date
