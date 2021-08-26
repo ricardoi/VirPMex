@@ -17,4 +17,4 @@ A collection of samples of  bean, garlic, maize, pepper and bell pepper, sugarca
 | All   | LS1VP1SS23 | 702 503  | Papaya | Papaya tissue with viral symptoms, colect year: 2000 |  Campeche, Yucatan, Jalisco, Tamaulipas, Quitana Roo, San Luis y Tabasco | None |
 > * NOTE: Bulk 2 uneven sampling, most of the tissue was used in bulk 1
 
-> The samples were processed for viral purification and double-stranded RNA enrichments, see [Alcala-Briseño et al., 2020](https://journals.asm.org/doi/10.1128/mSystems.00423-19) for materials and methods. 
+The samples were processed for viral purification and double-stranded RNA enrichments, see [Alcala-Briseño et al., 2020](https://journals.asm.org/doi/10.1128/mSystems.00423-19) for materials and methods. 
