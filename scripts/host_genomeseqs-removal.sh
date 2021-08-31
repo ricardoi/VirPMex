@@ -11,10 +11,10 @@ bowtie2-build genome.fna Host # takes about several minutes
 
 # Mapping reads to the Host genome 
 bowtie2 -x Host -1 Reads_1.fastq -2 Reads_2.fastq -S host_mapped_and_unmapped.sam
-samtools view -bS host_mapped_and_unmapped.sam > host_mapped_and_unmapped.bam
+samtools view -bS host_mapped-unmapped.sam > host_mapped-unmapped.bam
 
 # Filter unmapped reads
-samtools view -b -f 12 -F 256 host_mapped-unmapped.sam > host_both-pairs_unmapped.bam
+samtools view -b -f 12 -F 256 host_mapped-unmapped.sam > host_bothpairs_unmapped.bam
 
 # Split pair-end reads into separated fastq files...
 samtools sort -n host_both-pairs_unmapped.bam -o host_bothEndsUnmapped_sorted.bam 
