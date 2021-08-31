@@ -4,7 +4,7 @@
 ##### Author: Ricardo I. Alcala PhD
 
 ### List of scripts 
-1. Uno
+1. Remove sequence adapters (cutadapt)[https://github.com/ricardoi/VirPMex/blob/main/scripts/cut_adapt.sh]
 2. Dos
 3. Tres
 4. Cuatro
