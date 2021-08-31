@@ -4,8 +4,8 @@
 ##### Author: Ricardo I. Alcala PhD
 
 ### List of scripts 
-1. Remove sequence adapters [cutadapt](https://github.com/ricardoi/VirPMex/blob/main/scripts/cut_adapt.sh)
-2. Dos
+1. Remove sequence adapters [cutadapt.sh](https://github.com/ricardoi/VirPMex/blob/main/scripts/cut_adapt.sh)
+2. Host read sequence removal [mapping back](https://github.com/ricardoi/VirPMex/blob/main/scripts/host_genomeseqs-removal.sh)
 3. Tres
 4. Cuatro
 
