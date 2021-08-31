@@ -10,7 +10,7 @@ module load bowtie2 samtools bedtools
 bowtie2-build genome.fna Host # takes about several minutes
 
 # Mapping reads to the Host genome 
-bowtie2 -x Host -U Reads_1.fastq Reads_2.fastq -S host_mapped_and_unmapped.sam
+bowtie2 -x Host -1 Reads_1.fastq -2 Reads_2.fastq -S host_mapped_and_unmapped.sam
 samtools view -bS host_mapped_and_unmapped.sam > host_mapped_and_unmapped.bam
 
 # Filter unmapped reads
