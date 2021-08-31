@@ -11,23 +11,31 @@
 #SBATCH --output=host_rm_%j.out   # Name output file
 date; hostname; pwd
 
-#Remove host working
-#Tutorial http://www.metagenomics.wiki/tools/samtools/remove-host-sequences
-
-module load bowtie2 samtools bedtools
-
 # Assigning variables 
 HOST=$1 # Add the PATH to the genome sample
 R1=$2 # Add reads 1 in fastq.gz
 R2=$3 # Add reads 2 in fastq.gz
 OUTNAME=$4 # Add the name identifier, p.ex. Papaya
 
-# Commands
-bowtie2-build ${HOST} ${OUTNAME}_${HOST} 
-bowtie2 -x ${OUTNAME}_${HOST} -1 ${R1} -2 ${R2} -S ${OUTNAME}_mapped_and_unmapped.sam
-samtools view -bS ${OUTNAME}_mapped_and_unmapped.sam > ${OUTNAME}_mapped_and_unmapped.bam
-samtools view -b -f 12 -F 256 ${OUTNAME}_mapped_and_unmapped.bam > ${OUTNAME}_bothEndsUnmapped.bam
-samtools sort -n ${OUTNAME}_bothEndsUnmapped.bam ${OUTNAME}_bothEndsUnmapped_sorted 
-bedtools bamtofastq -i ${OUTNAME}_bothEndsUnmapped_sorted.bam -fq ${R1} -fq2 ${R2}
+# Remove Host Sequence from Viromes
+# Tutorial http://www.metagenomics.wiki/tools/samtools/remove-host-sequences
 
-date
+# Map Illumina reads againt host genome sequence
+# with bowtie2 https://www.nature.com/articles/nmeth.1923
+module load bowtie2 samtools bedtools
+
+# Index your Host file 
+bowtie2-build genome.fna ${HOST} # takes about several minutes
+
+# Mapping reads to the Host genome 
+bowtie2 -x ${HOST} -1 ${R1} -2 ${R2} -S ${OUTNAME}_mapped_and_unmapped.sam
+samtools view -bS ${OUTNAME}_mapped-unmapped.sam > ${OUTNAME}_mapped-unmapped.bam
+
+# Filter unmapped reads
+samtools view -b -f 12 -F 256 ${OUTNAME}_mapped-unmapped.sam > ${OUTNAME}_bothpairs_unmapped.bam
+
+# Split pair-end reads into separated fastq files...
+samtools sort -n ${OUTNAME}_both-pairs_unmapped.bam -o ${OUTNAME}_both-pairs_unmapped_sorted.bam 
+bedtools bamtofastq -i ${OUTNAME}_both-pairs_unmapped_sorted.bam -fq ${OUTNAME}_filtered.r1.fastq -fq2 ${OUTNAME}_filtered.r2.fastq
+
+date;
