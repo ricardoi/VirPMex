@@ -22,5 +22,5 @@ module load spades
 spades.py --pe1-1 RNAseq/LS1TO1SS03_S3_L001_R1_001.fastq.gz \
           --pe1-2 RNAseq/LS1TO1SS03_S3_L001_R2_001.fastq.gz \
           --s1 Sanger/ToBRFV_Sanger_reads_to.fastq \
-          --metaviral -out ToBRFV_spades_output
+          --metaviral -o ToBRFV_spades_output
 date;
