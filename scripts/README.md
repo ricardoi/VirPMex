@@ -5,7 +5,7 @@
 
 ### List of scripts 
 #### High Throughput Sequencing for Viromes
-1. Remove sequence adapters from Illumina reads using cutadapt[go to script](https://github.com/ricardoi/VirPMex/blob/main/scripts/cut_adapt.sh)
+1. Remove sequence adapters from Illumina reads using cutadapt [go to script](https://github.com/ricardoi/VirPMex/blob/main/scripts/cut_adapt.sh)
 2. Filtering the host read sequences using the host reference genome using bowtie [go to script](https://github.com/ricardoi/VirPMex/blob/main/scripts/host_genomeseqs-removal.sh)
 #### Virome -hybrid- assembly using Sanger and Illumina reads 
 3. If you have the .ab1 sequences transform it to fastq using emboss tools [go to script](https://github.com/ricardoi/VirPMex/blob/main/scripts/abi2fastq.sh)
