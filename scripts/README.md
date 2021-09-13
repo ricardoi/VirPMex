@@ -11,12 +11,17 @@
 3. If you have the .ab1 sequences transform it to fastq using emboss tools [go to script](https://github.com/ricardoi/VirPMex/blob/main/scripts/abi2fastq.sh)
 4. Assembly the host-free Illumina reads and the Sanger sequences using Spades [go to script](https://github.com/ricardoi/VirPMex/blob/main/scripts/Spades_metaviralassembler.sh)
 5. Pilon or something else to polish the sequence
-#### Generating consensus sequences 
+
+
+#### Virome assembly of paired-end Illumina reads
+6.Assembly the host-free Illumina reads using Spades [go to script](https://github.com/ricardoi/VirPMex/blob/main/scripts/Spades_metaviralassembler.sh) and modify the Sanger reads part.
+
+Generating consensus sequences 
 6. 
 
 # Scripts that will be removed
 a. uno repetido
 b. dos repetido
 
-This is a schematic representation of how to use this pipeline
-- 
+This is a schematic representation of how to use this pipeline (Fig 1).
+(https://github.com/ricardoi/VirPMex/figures/flow_diagram_viromeassembly.png)
