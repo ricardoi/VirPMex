@@ -19,12 +19,8 @@ module load ufrc spades
 # load spades on hipergator
 module load spades
 
-spades.py --pe1-1 reads_bu/S17_R1.fastq.gz\
-          --pe1-2 reads_bu/S17_R2.fastq.gz \
-          --metaviral -o bulk1_spades_output
-
-spades.py --pe1-1 reads_bu/S25_R1.fastq.gz\
-          --pe1-2 reads_bu/S25_R2.fastq.gz \
-          --metaviral -o bulk2_spades_output
-
+spades.py --pe1-1 RNAseq/tomato_filtered.r1.fastq \
+          --pe1-2 RNAseq/tomato_filtered.r2.fastq \
+          --s1 Sanger/ToBRFV_Sanger_reads_to.fastq \
+          --metaviral -o ToBRFV_spades_output
 date;
