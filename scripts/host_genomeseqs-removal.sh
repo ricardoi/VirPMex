@@ -17,5 +17,5 @@ samtools view -bS host_mapped-unmapped.sam > host_mapped-unmapped.bam
 samtools view -b -f 12 -F 256 host_mapped-unmapped.sam > host_bothpairs_unmapped.bam
 
 # Split pair-end reads into separated fastq files...
-samtools sort -n host_both-pairs_unmapped.bam -o host_bothEndsUnmapped_sorted.bam 
+samtools sort -n host_both-pairs_unmapped.bam -o host_both-pairs_unmapped_sorted.bam 
 bedtools bamtofastq -i host_both-pairs_unmapped_sorted.bam -fq host_filtered.r1.fastq -fq2 host_filtered.r2.fastq
